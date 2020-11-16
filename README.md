@@ -1,7 +1,7 @@
 # Configly React Library
 > The Ruby library for [Configly](https://www.config.ly): the modern config/static data key/value store.
 
-![npm](https://img.shields.io/npm/v/configly-react)
+![Gem](https://img.shields.io/gem/v/configly-ruby)
 ![GitHub](https://img.shields.io/github/license/configly/react)
 
 Table of Contents
@@ -74,7 +74,7 @@ To fetch a key, use the following command:
 Configly::Client.get(KEY)
 ```
 
-If the key doesn't exist (or if you are using the websockets client and it hasn't been prefetched), this will rais a `Configly::KeyError`
+If the key doesn't exist (or if you are using the websockets client and it hasn't been prefetched), this will raise a `Configly::KeyError`
 
 ## License
 
