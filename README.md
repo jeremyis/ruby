@@ -1,44 +1,81 @@
-# Configly::Ruby
+# Configly React Library
+> The Ruby library for [Configly](https://www.config.ly): the modern config/static data key/value store.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/configly/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
+![npm](https://img.shields.io/npm/v/configly-react)
+![GitHub](https://img.shields.io/github/license/configly/react)
 
-TODO: Delete this and the text above, and describe your gem
+Table of Contents
+=================
 
-## Installation
+  * [What is Configly?](#what-is-configly)
+     * [Core Features](#core-features)
+  * [Getting Started](#getting-started)
+     * [Get your API Key](#get-your-api-key)
+     * [Library installation](#library-installation)
+  * [Usage](#usage)
+  * [Example](#example)
+  * [License](#license)
 
-Add this line to your application's Gemfile:
 
-```ruby
-gem 'configly-ruby'
+## What is Configly?
+
+[Configly](https://www.config.ly) is the place software developers put their static / config data&mdash;like
+ copy, styling, and minor configuration values.
+They can then update that data directly from [https://www.config.ly](https://www.config.ly/)
+without having to wait for a deploy process / app store review. Their app or webapp receives the data near instantly.
+Non-technical folks themselves can publish changes freeing developers to focus on hard software problems and not copy tweaks.
+
+On the backend, [Configly](https://www.config.ly) provides a read-optimized static-data key/value store built
+with the aim of being low-latency, and high-availability. The client libraries are made to be dead-simple, lean, and efficient 
+(via enhancements like caching). There is a fancy [web UI called the Configulator](https://config.ly/config)
+for setting and updating the configs as well as seeing things like change history. Configly is built for modern software development.
+
+There are a host of other benefits to using Configly (
+such as ensuring you do not have [data duplicated across clients](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), reducing load on your primary DB, and better tolerance for traffic spikes),
+read more about the benefits at [Configly](config.ly).
+
+### Core Features
+
+- API to fetch Strings, JSON Blobs (arrays and objects), Booleans, and Numbers from the Configly backend
+- [Web interface](https://www.config.ly/config) for modifying these values without having to deploy code (we call our beloved web interface _the Configulator_).
+- High availability, high-throughput, low-latency backend.
+- Smart caching on the client libraries to minimize server requests.
+- Client libraries available in an expanding amount of languages.
+
+## Getting Started
+
+### Get your API Key
+
+You'll need a [Configly](https://www.config.ly) account. Registration is lightning quick&mdash;you can register via
+visiting [https://www.config.ly/signup](https://www.config.ly/signup).
+
+After signing up, you can grab your API Key from [https://www.config.ly/register](https://www.config.ly/register).
+You'll need your API Key to setup the API below.
+
+### Library installation
+
+```sh
+gem install configly-ruby
 ```
 
-And then execute:
+You will need to set the `CONFIGLY_API_KEY` environment variable.
 
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install configly-ruby
+If you want to use the optional websocket library, you can set:
+```
+CONFIGLY_KEYS_TO_PRELOAD=test1,test2,test3 (these are the keys you want to use)
+CONFIGLY_USE_WS=true
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+To fetch a key, use the following command:
 
-## Development
+```ruby
+Configly::Client.get(KEY)
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/configly-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/configly-ruby/blob/master/CODE_OF_CONDUCT.md).
-
+If the key doesn't exist (or if you are using the websockets client and it hasn't been prefetched), this will rais a `Configly::KeyError`
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Configly::Ruby project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/configly-ruby/blob/master/CODE_OF_CONDUCT.md).
+This repository is published under the [MIT](LICENSE.md) license.
