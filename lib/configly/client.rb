@@ -69,8 +69,6 @@ module Configly
                 request = Net::HTTP::Get.new uri
                 request.basic_auth get_api_key, ''
                 response = http.request request
-                print "\n#{response.code}\n"
-                print "\n#{response.body}\n"
                 data = JSON.parse(response.body)['data']
                 data.keys.each do |key|
                     loaded_keys[key] = data[key]['value']
