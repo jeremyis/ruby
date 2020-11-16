@@ -89,7 +89,7 @@ module Configly
             else
                 loaded_keys = fetch([key])
                 if loaded_keys.has_key? key
-                    return[key]
+                    return loaded_keys[key]
                 else
                     raise KeyError.new(key)
                 end
